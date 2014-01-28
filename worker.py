@@ -52,7 +52,7 @@ try:
 	
 	# Loop forever.
 	while 1:
-		
+		print "reading messages "		
 		# Read a message from the queue containing the key of
 		# the image to be resized, use read() to read the image.
 		# For every size of image to generated, call thumbnail()
