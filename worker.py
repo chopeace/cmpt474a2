@@ -3,6 +3,7 @@ import time
 import StringIO
 from PIL import Image
 from common import bucket, queue
+from boto.sqs.message import RawMessage
 
 # Create a thumbnail from an image.
 # @param image: PIL image to resize.
@@ -52,7 +53,38 @@ try:
 	
 	# Loop forever.
 	while 1:
-		print "reading messages "		
+				
+		queue.set_message_class(RawMessage)
+		results = queue.get_messages(num_messages=10, visibility_timeout=30,wait_time_seconds=10)
+		for msg in results:
+			body = msg.get_body()
+			jbody = json.loads(body)
+			ids = jbody["id"]
+			sizes = jbody["sizes"]
+			print "ID:%s,Sizes=%s \n" % ( ids,sizes  ) 
+			#print sizes['small']
+			#print sizes
+			#for key , value in sizes.items():
+			#	print "%s , %d"  % (key, int(value))
+				#print  value,
+
+			#for soze in sizes:
+				#print "%s," % size
+				#print size.width
+				#ody_size = size
+				
+				#jbody_size =json.loads(body_size)
+				#body_width = jbody_size["width"]
+				#body_height = jbody_size["height"]
+				
+				#print "size=%s \n" % size
+				#width  = size["width"]
+				#height = size["height"]
+				#print "W:%d, H:%d" % (body_width,body_height)	
+			
+			#for elem in jbody:
+			#	print elem[0],:
+
 		# Read a message from the queue containing the key of
 		# the image to be resized, use read() to read the image.
 		# For every size of image to generated, call thumbnail()

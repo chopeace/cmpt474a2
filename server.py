@@ -28,15 +28,15 @@ def generate_id():
 def notify_worker(id, sizes):
 	data = {
                 'submitdate' : time.strftime("%Y-%m-%dT%H:%M:%S", time.gmtime()),
-                'key' : id,
-                'sizes' : str(sizes)
+                'id' : id,
+                'sizes' :sizes
         }
      
         
         m = RawMessage()
         m.set_body(json.dumps(data))
         status = queue.write(m)
-	print 'your message sent : %s , status : %s ' % ( str(sizes),status)
+	print 'your message sent : %s , status : %s ' % ( m,status)
 	
 
 

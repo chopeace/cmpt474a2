@@ -50,7 +50,7 @@ def getKeys(file):
 			}
 
 
-keys = getKeys('rootkey.csv')
+keys = getKeys('/home/ubuntu/rootkey.csv')
 region = 'us-west-2'
 queue_name = "test"
 bucket_name = "chopeacecanada-images"
