@@ -50,10 +50,10 @@ def getKeys(file):
 			}
 
 
-keys = getKeys('/home/ubuntu/rootkey.csv')
+keys = getKeys('/home/ubuntu/keys.csv')
 region = 'us-west-2'
-queue_name = "test"
-bucket_name = "chopeacecanada-images"
+queue_name = "test-neha"
+bucket_name = "neha-474-images"
 
 if not queue_name: raise Exception('You must set a queue name.')
 if not bucket_name: raise Exception('You must set a bucket name.')
