@@ -61,29 +61,14 @@ try:
 			jbody = json.loads(body)
 			ids = jbody["id"]
 			sizes = jbody["sizes"]
-			print "ID:%s,Sizes=%s \n" % ( ids,sizes  ) 
-			#print sizes['small']
-			#print sizes
-			#for key , value in sizes.items():
-			#	print "%s , %d"  % (key, int(value))
-				#print  value,
+			print "ID:%s\n,Sizes=%s \n" % ( ids,sizes )
 
-			#for soze in sizes:
-				#print "%s," % size
-				#print size.width
-				#ody_size = size
-				
-				#jbody_size =json.loads(body_size)
-				#body_width = jbody_size["width"]
-				#body_height = jbody_size["height"]
-				
-				#print "size=%s \n" % size
-				#width  = size["width"]
-				#height = size["height"]
-				#print "W:%d, H:%d" % (body_width,body_height)	
-			
-			#for elem in jbody:
-			#	print elem[0],:
+			read_image = read(ids+'-original')
+
+			for size in sizes:
+				image_thumbnail = thumbnail(read_image, sizes[size]['width'],sizes[size]['height'])
+				write_done = write(ids+'-'+size,image_thumbnail,'jpeg')
+				print write_done
 
 		# Read a message from the queue containing the key of
 		# the image to be resized, use read() to read the image.
